@@ -1,4 +1,6 @@
 import urllib
+import gzip
+import shutil
 import logging
 from html.parser import HTMLParser
 from django import template
@@ -15,14 +17,19 @@ logger = logging.getLogger('django_css_inline')
 
 class LinksHTMLParser(HTMLParser):
     style_content = ''
+    external = ''
 
     def render_style_content(self):
         if self.style_content:
             return format_html(
-                "<style type=\"text/css\">{}</style>",
-                mark_safe(self.style_content)
+                "<style type=\"text/css\">{}</style>{}",
+                mark_safe(self.style_content),
+                mark_safe(self.external)
             )
         return None
+
+    def render_link(self, href):
+        return "<link rel=\"stylesheet\" href=\"%s\">" % href
 
     def handle_starttag(self, tag, attrs):
         """
@@ -42,7 +49,10 @@ class LinksHTMLParser(HTMLParser):
                 # External
                 if href.startswith('https://') or href.startswith('//'):
                     style_file = urllib.request.urlopen(href)
-                    self.style_content += style_file.read().decode("utf-8")
+                    try:
+                        self.style_content += style_file.read().decode("utf-8")
+                    except UnicodeDecodeError:
+                        self.external += self.render_link(href)
 
                 # Django Static
                 elif href.startswith(settings.STATIC_URL):
