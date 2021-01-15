@@ -66,7 +66,7 @@ In settings.py, chose to enable or disable django_css_inline. For example :
 ::
 
     # Default True
-    DJANGO_CSS_INLINE_ENABLE = DEBUG
+    DJANGO_CSS_INLINE_ENABLE = not DEBUG
 
 If you use static files with Django, don't forget to collect them with :
 ::
