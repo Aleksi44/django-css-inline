@@ -1,0 +1,21 @@
+{% load css_inline %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    {% css_inline %}
+        <link rel="stylesheet" href="/static/django_css_inline/test-1.css">
+        <link rel="stylesheet" href="/static/django_css_inline/test-2.css">
+        <link rel="stylesheet" href="https://static.snoweb.fr/django-css-inline/test-3.css">
+    {% end_css_inline %}
+</head>
+<body>
+
+<p class="test-1">{% lorem %}</p>
+<p class="test-2">{% lorem %}</p>
+<p class="test-3">{% lorem %}</p>
+
+
+</body>
+</html>

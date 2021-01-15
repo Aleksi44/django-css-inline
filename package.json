@@ -1,0 +1,10 @@
+{
+  "name": "django_css_inline",
+  "version": "0.0.1",
+  "repository": "git@github.com:Aleksi44/django-css-inline.git",
+  "author": "Alexis LE BARON <hello@snoweb.fr>",
+  "license": "GPL-3.0",
+  "dependencies": {},
+  "scripts": {},
+  "devDependencies": {}
+}

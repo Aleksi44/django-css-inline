@@ -1,0 +1,10 @@
+[run]
+relative_files = True
+omit =
+    ./manage.py
+    ./wsgi.py
+    ./setup.py
+
+[report]
+exclude_lines =
+    if settings.DEBUG
