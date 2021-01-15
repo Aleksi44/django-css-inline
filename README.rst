@@ -2,11 +2,11 @@
 Django CSS inline
 *****************
 
-.. image:: https://img.shields.io/pypi/v/django_css_inline
-    :target: https://pypi.org/project/django_css_inline/
+.. image:: https://img.shields.io/pypi/v/django-css-inline
+    :target: https://pypi.org/project/django-css-inline/
 
-.. image:: https://img.shields.io/pypi/pyversions/django_css_inline
-    :target: https://pypi.org/project/django_css_inline/
+.. image:: https://img.shields.io/pypi/pyversions/django-css-inline
+    :target: https://pypi.org/project/django-css-inline/
 
 
 Simple helper for loading CSS files as inline in HTML with Django.
@@ -51,7 +51,7 @@ Setup
 
 Install with pip :
 
-``pip install django_css_inline``
+``pip install django-css-inline``
 
 
 Add django_css_inline to django apps installed :
