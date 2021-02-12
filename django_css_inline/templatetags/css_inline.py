@@ -49,11 +49,12 @@ class LinksHTMLParser(HTMLParser):
                 # External
                 if href.startswith('https://') or href.startswith('//'):
                     style_file = urllib.request.urlopen(href)
+                    style_content = style_file.read()
                     try:
-                        self.style_content += style_file.read().decode("utf-8")
+                        self.style_content += style_content.decode("utf-8")
                     except UnicodeDecodeError:
-                        self.external += self.render_link(href)
-
+                        # Gzip file
+                        self.style_content += gzip.decompress(style_content).decode("utf-8")
                 # Django Static
                 elif href.startswith(settings.STATIC_URL):
                     style_path_static = href.replace(settings.STATIC_URL, '')
