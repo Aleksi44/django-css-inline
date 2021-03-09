@@ -49,3 +49,16 @@ class DjangoCssInlineTest(TestCase):
             rendered,
             """<style type="text/css">/* External test 3 */\n\n.test-3 {\n    color: blue;\n}\n:root{--svg-theme-light-primary: #14253A;--svg-theme-light-secondary: #E63946;--svg-theme-light-tertiary: #f7f7f7;--svg-theme-dark-primary: #F7F7F7;--svg-theme-dark-secondary: #E63946;--svg-theme-dark-tertiary: #112032}.svg-theme-dark .svg-fill-primary{fill:var(--svg-theme-dark-primary)}.svg-theme-light .svg-fill-primary{fill:var(--svg-theme-light-primary)}.svg-theme-dark .svg-fill-secondary{fill:var(--svg-theme-dark-secondary)}.svg-theme-light .svg-fill-secondary{fill:var(--svg-theme-light-secondary)}.svg-theme-dark .svg-fill-tertiary{fill:var(--svg-theme-dark-tertiary)}.svg-theme-light .svg-fill-tertiary{fill:var(--svg-theme-light-tertiary)}.svg-theme-dark .svg-stroke-primary{stroke:var(--svg-theme-dark-primary)}.svg-theme-light .svg-stroke-primary{stroke:var(--svg-theme-light-primary)}.svg-theme-dark .svg-stroke-secondary{stroke:var(--svg-theme-dark-secondary)}.svg-theme-light .svg-stroke-secondary{stroke:var(--svg-theme-light-secondary)}.svg-theme-dark .svg-stroke-tertiary{stroke:var(--svg-theme-dark-tertiary)}.svg-theme-light .svg-stroke-tertiary{stroke:var(--svg-theme-light-tertiary)}\n</style>"""
         )
+
+
+    def test_not_found(self):
+        rendered = self.render_template(
+            '{% load css_inline %}'
+            '{% css_inline %}'
+            '<link rel="stylesheet" href="https://static.snoweb.fr/this-url-does-not-exist.css">'
+            '{% end_css_inline %}'
+        )
+        self.assertEqual(
+            rendered,
+            """<link rel="stylesheet" href="https://static.snoweb.fr/this-url-does-not-exist.css">"""
+        )
